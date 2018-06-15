@@ -20,8 +20,8 @@
       <div class="form-group">
         <label for="category">Category</label>
         <select #category="ngModel" required [(ngModel)]="product.category" name="category" id="category" class="form-control">
-          <!-- <option value=""></option> -->
-          <option *ngFor="let c of categories$ | async" value="c.$key">{{ c.name }}</option>
+          <option value=""></option>
+          <option *ngFor="let c of categories$ | async" [value]="c.$key">{{ c.name }}</option>
         </select>
         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
       </div>
@@ -38,12 +38,6 @@
     </form>
   </div>
   <div class="col-md-6">
-    <div *ngIf="product.title" class="card" style="width: 18rem;">
-      <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl">
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price| currency: 'USD': true}}</p>
-      </div>
-    </div>
+    <app-product-card [product]="product" [show-action]="false"></app-product-card>
   </div>
 </div>
